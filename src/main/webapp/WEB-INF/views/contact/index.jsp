@@ -29,11 +29,11 @@
             </div>
             <div>
                 <label>Message</label>
-                <textarea name="name" required="required" style="height:200px"></textarea>
+                <textarea name="message" required="required" style="height:200px"></textarea>
             </div>
             <div>
                 <label>
-                    <input type="checkbox" name="send_me"/>
+                    <input type="checkbox" name="sendMe"/>
                     Send me a copy
                 </label>
             </div>
