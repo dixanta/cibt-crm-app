@@ -4,6 +4,7 @@
     Author     : USER
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,5 +14,8 @@
     </head>
     <body>
         <h1>Hello Spring Framework!</h1>
+    <c:forEach var="course" items="${courses}">
+        <li style="font-weight: bold">${course.name} (${course.fees})</li>
+    </c:forEach>
     </body>
 </html>

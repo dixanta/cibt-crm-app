@@ -5,13 +5,20 @@
  */
 package com.cibt.web.controller;
 
+import com.cibt.web.dao.CourseDAO;
 import com.cibt.web.entity.Contact;
+import com.cibt.web.entity.Course;
+import com.cibt.web.entity.Enquiry;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -22,8 +29,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/")
 public class HomeController {
     
+    @Autowired
+    private CourseDAO courseDAO;
+    
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        
+        model.addAttribute("courses",courseDAO.getAll());
         return "index";
     }
     
@@ -33,9 +48,23 @@ public class HomeController {
     }
     
     @PostMapping("/contact")
-    @ResponseBody
-    public String contactPost(@ModelAttribute(value = "contact")
-        Contact contact){
-        return contact.toString();
+    @ResponseBody 
+    public String contactPost(@ModelAttribute("Contact")
+    Contact contact,@RequestParam(value = "sendMe",required = false)boolean sendMe){
+        
+        String sql="insert into contacts(name,email,"
+                + "subject,message,status)values(?,?,?,?,?)";
+        int result = jdbcTemplate
+                .update(sql,new Object[]{
+                   contact.getName(),
+                    contact.getEmail(),
+                    contact.getSubject(),
+                    contact.getMessage(),
+                    contact.isStatus()
+                });
+        String message="<h1>Result: " + result;
+        message +=(sendMe)?"Send copy":"do not send copy";
+        message +="</h1>";
+        return message ;
     }
 }

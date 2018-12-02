@@ -11,21 +11,23 @@ import java.util.Date;
  *
  * @author USER
  */
-public class Contact {
+public class Enquiry {
     private int id;
-    private String name,email,subject,message;
+    private String firstName,lastName,email,contactNo;
+    private Course course;
     private Date addedDate,modifiedDate;
+    private String remarks;
     private boolean status;
 
-    public Contact() {
+    public Enquiry() {
     }
 
-    public Contact(int id, String name, String email, String subject, String message, boolean status) {
+    public Enquiry(int id, String firstName, String lastName, String email, String contactNo, boolean status) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.subject = subject;
-        this.message = message;
+        this.contactNo = contactNo;
         this.status = status;
     }
 
@@ -37,12 +39,20 @@ public class Contact {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -53,20 +63,20 @@ public class Contact {
         this.email = email;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getContactNo() {
+        return contactNo;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
-    public String getMessage() {
-        return message;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public Date getAddedDate() {
@@ -84,8 +94,14 @@ public class Contact {
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-    
-    
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
 
     public boolean isStatus() {
         return status;
@@ -94,11 +110,7 @@ public class Contact {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    @Override
-    public String toString() {
-        return "Contact{" + "id=" + id + ", name=" + name + ", email=" + email + ", subject=" + subject + ", message=" + message + ", status=" + status + '}';
-    }
+    
     
     
 }
