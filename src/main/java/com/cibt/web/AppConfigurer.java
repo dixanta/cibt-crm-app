@@ -43,7 +43,7 @@ public class AppConfigurer {
     @Bean
     public DataSource getDataSource(){
         DriverManagerDataSource
-                ds=new DriverManagerDataSource(jdbcURL, jdbcURL, jdbcPassword);
+                ds=new DriverManagerDataSource(jdbcURL, jdbcUser, jdbcPassword);
         ds.setDriverClassName(jdbcDriver);
         return ds;
     }
