@@ -5,15 +5,12 @@
  */
 package com.cibt.web.dao;
 
-import java.util.List;
+import com.cibt.web.entity.Student;
 
 /**
  *
  * @author USER
  */
-public interface GenericDAO<T> {
-    List<T> getAll();
-    void save(T model);
-    boolean delete(int id);
-    T getById(int id);
+public interface StudentDAO extends GenericDAO<Student>{
+    
 }

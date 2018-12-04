@@ -34,7 +34,7 @@ public class HomeController {
     
     @GetMapping("/")
     public String index(Model model){
-        
+        model.addAttribute("course",courseDAO.getById(2));
         model.addAttribute("courses",courseDAO.getAll());
         return "index";
     }

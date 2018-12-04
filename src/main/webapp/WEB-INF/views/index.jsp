@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello Spring Framework!</h1>
+        <h1>Hello Spring ${course.name} (${course.fees})!</h1>
     <c:forEach var="course" items="${courses}">
         <li style="font-weight: bold">${course.name} (${course.fees})</li>
     </c:forEach>

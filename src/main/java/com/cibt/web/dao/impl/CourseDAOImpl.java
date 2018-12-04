@@ -8,6 +8,8 @@ package com.cibt.web.dao.impl;
 import com.cibt.web.dao.CourseDAO;
 import com.cibt.web.entity.Course;
 import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,26 +21,7 @@ import org.springframework.stereotype.Repository;
  * @author USER
  */
 @Repository
-public class CourseDAOImpl implements CourseDAO {
-    @Autowired
-    private SessionFactory sessionFactory;
-    private Session session;
-    private Transaction transaction;
-    
-    @Override
-    public List<Course> getAll() {
-        session=sessionFactory.openSession();
-        return session.createQuery("select c from Course c")
-                .list();
-    }
-
-    @Override
-    public int insert(Course model) {
-        session=sessionFactory.openSession();
-        transaction=session.beginTransaction();
-        session.saveOrUpdate(model);
-        transaction.commit();
-        return model.getId();
-    }
-    
+public class CourseDAOImpl extends 
+        GenericDAOImpl<Course> 
+            implements CourseDAO {
 }
